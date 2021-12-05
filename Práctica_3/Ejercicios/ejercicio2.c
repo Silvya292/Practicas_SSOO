@@ -12,7 +12,7 @@ pthread_mutex_t mutex=PTHREAD_MUTEX_INITIALIZER;
 void * generateNumber(void *orden){
     int *cont=(int *)orden;
     int suma=0;
-    float *res = malloc(sizeof(float));
+    int *res = malloc(sizeof(int));
 
     pthread_mutex_lock(&mutex);
     for(int i=0;i<5;i++){
@@ -30,7 +30,7 @@ void * generateNumber(void *orden){
 
     *res=suma;
 	
-    printf("La hebra de orden de creación %d devolvió un valor de suma parcial de %f\n",*cont,*res);
+    printf("La hebra de orden de creación %d devolvió un valor de suma parcial de %d\n",*cont,*res);
     pthread_mutex_unlock(&mutex);
 	
 	pthread_exit((void *)res);
