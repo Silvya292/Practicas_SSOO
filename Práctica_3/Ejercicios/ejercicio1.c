@@ -50,13 +50,13 @@ void * compraCamisetas(void * vectorCamisetas){
     pthread_mutex_lock(&mutex);
     int newStock=stock->vector[modelo]-cantidad;
     if(newStock<0){
-        printf("<--(CLIENTE): El cliente %ld ha comprado %d unidades de la camiseta nº%d\n",pthread_self(),stock->vector[modelo],modelo+1);
+        printf("← (CLIENTE): El cliente %ld ha comprado %d unidades de la camiseta nº%d\n",pthread_self(),stock->vector[modelo],modelo+1);
         stock->vector[modelo]=0;
         pthread_mutex_unlock(&mutex);
         pthread_exit(NULL);
     }
     stock->vector[modelo]=newStock;
-    printf("<--(CLIENTE): El cliente %ld ha comprado %d unidades de la camiseta nº%d\n",pthread_self(),cantidad,modelo+1);
+    printf("← (CLIENTE): El cliente %ld ha comprado %d unidades de la camiseta nº%d\n",pthread_self(),cantidad,modelo+1);
     pthread_mutex_unlock(&mutex);
     pthread_exit(NULL);
 }
@@ -68,7 +68,7 @@ void * supplyCamisetas(void * vectorCamisetas){
     int cantidad=(rand()%10)+1;
     pthread_mutex_lock(&mutex);
     stock->vector[modelo]+=cantidad;
-    printf("-->(PROVEEDOR): El proveedor %ld ha suministrado %d unidades de la camiseta nº%d\n",pthread_self(),cantidad,modelo+1);
+    printf("→ (PROVEEDOR): El proveedor %ld ha suministrado %d unidades de la camiseta nº%d\n",pthread_self(),cantidad,modelo+1);
     pthread_mutex_unlock(&mutex);
     pthread_exit(NULL);
 }
